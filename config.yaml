@@ -1,0 +1,38 @@
+# Camera Observer Configuration
+
+# MQTT Configuration
+mqtt:
+  # Broker URL (tcp://hostname:port format)
+  # Default: tcp://mqtt.wilkywayre.com:1883
+  broker: "tcp://mqtt.wilkywayre.com:1883"
+  
+  # Topic to subscribe to
+  # Frigate publishes stats to: frigate/stats
+  topic: "frigate/stats"
+  
+  # MQTT Client ID (must be unique on the broker)
+  client_id: "camera_observer"
+
+# SmartThings Integration
+smartthings:
+  # Get your token from: https://account.smartthings.com/tokens
+  # IMPORTANT: Treat this like a password - don't commit to version control!
+  # You can also set via environment variable: SMARTTHINGS_API_TOKEN
+  api_token: "smartthings-api-token-here"
+
+# Camera to SmartThings Device Mapping
+# Format: "camera_name_from_frigate": "device-id-from-smartthings"
+# 
+# The camera names must match EXACTLY what appears in the Frigate stats JSON.
+# Use `go run cmd/list-devices/main.go --token "YOUR_TOKEN"` to get device IDs.
+# 
+# Example Frigate stats payload:
+# {
+#   "cameras": {
+#     "front_door": { "camera_fps": 0, "pid": 1234 },
+#     "backyard": { "camera_fps": 25, "pid": 5678 }
+#   }
+# }
+mapping:
+  "front_door": "device-uuid-001"
+  "backyard": "device-uuid-002"

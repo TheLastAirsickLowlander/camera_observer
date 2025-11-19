@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: camera-observer
+    restart: unless-stopped
+    environment:
+      # Optional: Override config.yaml values with environment variables
+      # Uncomment and set these to override config file values
+      # - MQTT_BROKER=tcp://mqtt.wilkywayre.com:1883
+      # - MQTT_TOPIC=frigate/stats
+      # - MQTT_CLIENT_ID=camera_observer
+      # - SMARTTHINGS_API_TOKEN=your_token_here
+    volumes:
+      - ./config.yaml:/root/config.yaml
